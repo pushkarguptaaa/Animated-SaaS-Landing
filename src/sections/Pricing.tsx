@@ -1,5 +1,7 @@
+"use client"
 import CheckIcon from "../assets/check.svg"
 import { twMerge } from 'tailwind-merge'
+import { motion } from "framer-motion";
 
 const pricingTiers = [
   {
@@ -70,7 +72,16 @@ export const Pricing = () => {
                 <h3 className={twMerge("text-lg font-bold text-black/50", inverse === true && "text-white/60")}>{title}</h3>
                 {popular === true && (
                   <div className="inline-flex text-sm px-4 py-1.5 rounded-xl border border-white/20">
-                  <span className="bg-[linear-gradient(to_right,#DD7DFF,#E1CD86,#8BCB92,#71C2EF,#3BFFFF,#DD7DFF)] text-transparent bg-clip-text font-medium">Popular</span>
+                  <motion.span className="bg-[linear-gradient(to_right,#DD7DFF,#E1CD86,#8BCB92,#71C2EF,#3BFFFF,#DD7DFF,#E1CD86,#8BCB92,#71C2EF,#3BFFFF,#DD7DFF)] [background-size:200%] text-transparent bg-clip-text font-medium" 
+                  animate={{
+                    backgroundPositionX: "100%"
+                  }}
+                  transition={{
+                    duration: 1,
+                    repeat: Infinity,
+                    ease: "linear",
+                    repeatType: "loop"
+                  }}>Popular</motion.span>
                 </div>
                 )}
                 
@@ -78,7 +89,7 @@ export const Pricing = () => {
               
               <div className="flex items-baseline gap-1 mt-[30px]">
                 <span className="text-4xl font-bold tracking-tighter leading-none">${monthlyPrice}</span>
-                <span className="tracking-tight font-bold text-black/50">/month</span>
+                <span className={twMerge("tracking-tight font-bold text-black/50", inverse === true && "text-white/50")}>/month</span>
               </div>
 
               <button className={twMerge("btn btn-primary w-full mt-[30px]", inverse === true && "bg-white text-black")}>{buttonText}</button>
